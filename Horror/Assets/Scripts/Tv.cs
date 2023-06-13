@@ -12,6 +12,7 @@ public class Tv : MonoBehaviour
     public float maxVolume = 0.5f;
     public float volumeIncreaseRate = 0.01f;
     public float videoPlayTime;
+    public GameObject doorObject;
 
     private void Start()
     {
@@ -40,6 +41,7 @@ public class Tv : MonoBehaviour
         {
             video.enabled = false;
             audioSource.Stop();
+            doorObject.GetComponent<Door>().played= true;
         }
     }
 }

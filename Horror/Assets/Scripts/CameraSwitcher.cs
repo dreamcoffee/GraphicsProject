@@ -12,6 +12,8 @@ public class CameraSwitcher : MonoBehaviour
 
     private void Start()
     {
+        subCamera.enabled = true;
+        mainCamera.enabled = false;
         subCameraRotation = new Vector3(0, 90, 0);
         // 게임 시작 시 서브 카메라로 전환
         Invoke("SwitchToSubCamera", delay);

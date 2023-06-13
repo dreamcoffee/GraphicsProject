@@ -12,7 +12,7 @@ public class Tv : MonoBehaviour
     public float maxVolume = 0.5f;
     public float volumeIncreaseRate = 0.01f;
     public float videoPlayTime;
-    public GameObject doorObject;
+    public GameObject phoneObject;
 
     private void Start()
     {
@@ -41,7 +41,14 @@ public class Tv : MonoBehaviour
         {
             video.enabled = false;
             audioSource.Stop();
-            doorObject.GetComponent<Door>().played= true;
+
+            Invoke("OnPhone", 10f);
         }
+    }
+
+    private void OnPhone()
+    {
+        phoneObject.GetComponent<Phone>().clickPhone = true;
+        phoneObject.GetComponent<Phone>().ScreenOn();
     }
 }

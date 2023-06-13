@@ -6,7 +6,7 @@ public class ScreenFade : MonoBehaviour
     public Camera mainCamera;  // 메인 카메라
     public Camera subCamera;   // 서브 카메라
 
-    public float fadeDuration = 2f; // 페이드 인이 완료되는 데 걸리는 시간
+    public float fadeDuration = 5f; // 페이드 인이 완료되는 데 걸리는 시간
     public float delay = 2f; // 게임 시작 후 대기 시간
 
     private Image fadeImage;

@@ -10,8 +10,6 @@ public class CameraSwitcher : MonoBehaviour
 
     public Vector3 subCameraRotation;  // 서브 카메라의 원하는 각도
 
-    private bool isSwitched = false;   // 카메라 전환 여부
-
     private void Start()
     {
         subCameraRotation = new Vector3(0, 90, 0);

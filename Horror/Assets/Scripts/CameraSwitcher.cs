@@ -44,6 +44,7 @@ public class CameraSwitcher : MonoBehaviour
             subCamera.transform.rotation = Quaternion.Slerp(startRotation, endRotation, t);
             yield return null;
         }
+        yield return new WaitForSeconds(2f);
 
         // 각도 변경이 완료되면 메인 카메라로 전환
         SwitchToMainCamera();

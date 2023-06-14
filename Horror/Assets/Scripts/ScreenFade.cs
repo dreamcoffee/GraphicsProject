@@ -22,7 +22,7 @@ public class ScreenFade : MonoBehaviour
         Invoke("StartFadeIn", delay);
     }
 
-    private void Update()
+    public void Update()
     {
         if (isFadeInStarted)
         {
@@ -35,7 +35,7 @@ public class ScreenFade : MonoBehaviour
             // fadeDuration 이후에 이미지를 비활성화
             if (fadeTimer >= fadeDuration)
             {
-                fadeImage.enabled = false;
+                isFadeInStarted = false;
                 enabled = false; // 이 스크립트를 비활성화
             }
         }

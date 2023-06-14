@@ -676,7 +676,8 @@ Transform:
   m_LocalPosition: {x: 0.5, y: 0.49999952, z: -0.1888889}
   m_LocalScale: {x: -0.020000001, y: 12.7, z: 0.22222224}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1029390675}
   m_Father: {fileID: 215778405}
   m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -705,6 +706,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eeca59d477247c74cbbe62654a540caa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  fadeObject: {fileID: 352035597}
   screenObject: {fileID: 1679818733}
   video: {fileID: 1552077311}
   AudioClip: {fileID: 8300000, guid: 9c9ee07124280ee42a15c6a15716f0ad, type: 3}
@@ -1009,8 +1011,9 @@ GameObject:
   - component: {fileID: 352035600}
   - component: {fileID: 352035599}
   - component: {fileID: 352035601}
+  - component: {fileID: 352035602}
   m_Layer: 5
-  m_Name: ScreenCover
+  m_Name: Fade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1029,7 +1032,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2025983448}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1088,6 +1091,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeDuration: 5
   delay: 2
+--- !u!114 &352035602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352035597}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e388f59bd5731604d93d313831e8ffa4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fadeDuration: 1
 --- !u!1 &393950408 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 21a934e7ff74d0c4888b0c28f3a54152, type: 3}
@@ -1158,12 +1174,12 @@ AudioSource:
   m_Volume: 0.01
   m_Pitch: 1
   Loop: 1
-  Mute: 0
+  Mute: 1
   Spatialize: 0
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 1.61
+  MinDistance: 1.34
   MaxDistance: 5.89
   Pan2D: 0
   rolloffMode: 0
@@ -1518,7 +1534,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
+  m_Size: {x: 7.91, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &605985012
 MeshRenderer:
@@ -1636,10 +1652,12 @@ MonoBehaviour:
   screenObject: {fileID: 0}
   audioSource: {fileID: 482729650}
   video: {fileID: 605985015}
-  maxVolume: 0.1
-  volumeIncreaseRate: 0.01
+  tvLight: {fileID: 1146210097}
+  maxVolume: 0.05
+  volumeIncreaseRate: 0.005
   videoPlayTime: 8
   phoneObject: {fileID: 1440501505}
+  tvClick: 1
 --- !u!1001 &695420022
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1980,13 +1998,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1029390673}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.452, y: 1.597858, z: 7.059}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.87999994, y: 1.2187859, z: -0.6709999}
+  m_LocalScale: {x: -10, y: 0.7874016, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_Father: {fileID: 110048988}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1038079522
 GameObject:
@@ -2622,9 +2640,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickPhone: 0
+  clickPhone2: 1
   doorObject: {fileID: 110048985}
   screenObject: {fileID: 1679818733}
+  fadeObject: {fileID: 352035597}
   audioSource: {fileID: 1821781643}
+  policeCall: {fileID: 8300000, guid: 614bc64329f59454daae65f187f74ed2, type: 3}
+  policeSound: {fileID: 8300000, guid: 8974ea4b938839a408f413ca806c3a4a, type: 3}
+  konck2: {fileID: 8300000, guid: 9d025ad53fdf4374e864d55caf1fddec, type: 3}
   video: {fileID: 1552077311}
   onColor: {r: 1, g: 1, b: 1, a: 1}
   offColor: {r: 0, g: 0, b: 0, a: 1}
@@ -3037,7 +3060,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1578674978}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 888b137fd419a2041b2a31b5d5e46f09, type: 3}
   m_Name: 
@@ -3274,7 +3297,7 @@ RectTransform:
   m_Children:
   - {fileID: 1552077312}
   m_Father: {fileID: 2025983448}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3816,8 +3839,8 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 352035598}
   - {fileID: 1679818734}
+  - {fileID: 352035598}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3939,9 +3962,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   clickPhone: 0
+  clickPhone2: 1
   doorObject: {fileID: 110048985}
   screenObject: {fileID: 1679818733}
+  fadeObject: {fileID: 352035597}
   audioSource: {fileID: 1821781643}
+  policeCall: {fileID: 8300000, guid: 614bc64329f59454daae65f187f74ed2, type: 3}
+  policeSound: {fileID: 8300000, guid: 8974ea4b938839a408f413ca806c3a4a, type: 3}
+  konck2: {fileID: 8300000, guid: 9d025ad53fdf4374e864d55caf1fddec, type: 3}
   video: {fileID: 1552077311}
   onColor: {r: 1, g: 1, b: 1, a: 1}
   offColor: {r: 0, g: 0, b: 0, a: 1}

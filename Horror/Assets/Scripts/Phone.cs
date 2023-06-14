@@ -8,48 +8,104 @@ using UnityEngine.UI;
 public class Phone : MonoBehaviour
 {
     public bool clickPhone = false;
+    public bool clickPhone2 = false;
     public GameObject doorObject;
     public GameObject screenObject;
+    public GameObject tvScreenObject;
+    public GameObject fadeObject;
     public AudioSource audioSource;
+    public AudioClip policeCall;
+    public AudioClip policeSound;
+    public AudioClip konck2;
+    public AudioClip horrorSound1;
     public VideoPlayer video;
-    public Color onColor = Color.white;
-    public Color offColor = Color.black;
+    private Color onColor = Color.white;
+    private Color offColor = Color.black;
     private Renderer renderer;
     private Material material;
 
 
     private void Start()
     {
+        renderer = this.GetComponent<Renderer>(); // 대상 오브젝트의 Renderer 컴포넌트 가져오기
+        material = renderer.material; // 메테리얼 가져오기
     }
 
     private void Click()
     {
         if (clickPhone)
         {
-            screenObject.SetActive(true);
-            video.enabled = true;
-            video.Play();
-            audioSource.Stop();
-            video.loopPointReached += DoorOn;
+            clickPhone = false;
+            Debug.Log("테스트");
+            fadeObject.GetComponent<Fade>().FadeOut();
+            StartCoroutine(DelayedAction());
+            IEnumerator DelayedAction()
+            {
+                yield return new WaitForSeconds(3f);
+                screenObject.SetActive(true);
+                video.enabled = true;
+                fadeObject.GetComponent<Fade>().FadeClear();
+                video.Play();
+                audioSource.Stop();
+                video.loopPointReached += DoorOn;
+            }
+        }
+        else if (clickPhone2)
+        {
+            Event2();
         }
     }
 
-    public void ScreenOn()
+    public void Event1()
     {
-        renderer = this.GetComponent<Renderer>(); // 대상 오브젝트의 Renderer 컴포넌트 가져오기
-        material = renderer.material; // 메테리얼 가져오기
         material.SetColor("_EmissionColor", onColor * 1);
         audioSource.Play();
     }
 
+    public void Event2()
+    {
+        clickPhone2 = false;
+        Debug.Log("테스트테스트");
+        audioSource.clip = policeCall;
+        audioSource.loop = false;
+        fadeObject.GetComponent<Fade>().FadeOut();
+        audioSource.Play();
+
+        StartCoroutine(WaitForAudioClipEnd());
+    }
     public void DoorOn(VideoPlayer vp)
     {
         if (vp == video)
         {
             material.SetColor("_EmissionColor", onColor * 0);
+            fadeObject.GetComponent<Fade>().FadeIn();
             video.enabled = false;
             screenObject.SetActive(false);
             doorObject.GetComponent<Door>().played = true;
         }
+    }
+
+    private IEnumerator WaitForAudioClipEnd()
+    {
+        while (audioSource.isPlaying)
+        {
+            yield return null;
+        }
+
+        audioSource.clip = policeSound;
+        audioSource.Play();
+        while (audioSource.isPlaying)
+        {
+            yield return null;
+        }
+        yield return new WaitForSeconds(1f);
+        fadeObject.GetComponent<Fade>().FadeIn();
+        yield return new WaitForSeconds(3f);
+        tvScreenObject.GetComponent<Tv>().TvOff();
+        audioSource.clip = horrorSound1;
+        audioSource.spatialBlend = 0f;
+        audioSource.Play();
+        yield return new WaitForSeconds(2f);
+        doorObject.GetComponent<Door>().PlayDoorAudio(konck2);
     }
 }

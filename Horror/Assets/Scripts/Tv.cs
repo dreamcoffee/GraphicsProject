@@ -9,15 +9,32 @@ public class Tv : MonoBehaviour
     public GameObject screenObject;
     public AudioSource audioSource;
     public VideoPlayer video;
+    public Light tvLight;
     public float maxVolume = 0.5f;
-    public float volumeIncreaseRate = 0.01f;
+    public float volumeIncreaseRate = 0.0001f;
     public float videoPlayTime;
     public GameObject phoneObject;
+    private bool tvLightOn = true;
+    public bool tvClick = false;
 
     private void Start()
     {
         StartCoroutine(IncreaseVolumeOverTime());
         Invoke("PlayVideo", videoPlayTime);
+    }
+
+    public void Click()
+    {
+        if (tvClick)
+        {
+            if(tvLightOn) {
+                TvOff();
+            }
+            else
+            {
+                TvOn();
+            }
+        }
     }
 
     private void PlayVideo()
@@ -28,6 +45,7 @@ public class Tv : MonoBehaviour
 
     private IEnumerator IncreaseVolumeOverTime()
     {
+        yield return new WaitForSeconds(3f);
         while (audioSource.volume < maxVolume)
         {
             audioSource.volume += volumeIncreaseRate * Time.deltaTime;
@@ -49,6 +67,18 @@ public class Tv : MonoBehaviour
     private void OnPhone()
     {
         phoneObject.GetComponent<Phone>().clickPhone = true;
-        phoneObject.GetComponent<Phone>().ScreenOn();
+        phoneObject.GetComponent<Phone>().Event1();
+    }
+
+    public void TvOn()
+    {
+        tvLightOn = true;
+        tvLight.enabled = true;
+    }
+
+    public void TvOff()
+    {
+        tvLight.enabled = false;
+        tvLightOn = false;
     }
 }

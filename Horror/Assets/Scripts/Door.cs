@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class Door : MonoBehaviour
 {
+    public GameObject fadeObject;
     public GameObject screenObject;
     public VideoPlayer video;
     public AudioClip AudioClip;
@@ -24,11 +25,19 @@ public class Door : MonoBehaviour
         Debug.Log(played);
         if (played)
         {
-            video.clip = videoClip;
-            screenObject.SetActive(true);
-            video.enabled = true;
-            video.Play();
-            video.loopPointReached += OnVideoEnd;
+            played = false;
+            fadeObject.GetComponent<Fade>().FadeOut();
+            StartCoroutine(DelayedAction());
+            IEnumerator DelayedAction()
+            {
+                yield return new WaitForSeconds(3f);
+                fadeObject.GetComponent<Fade>().FadeClear();
+                screenObject.SetActive(true);
+                video.enabled = true;
+                video.clip = videoClip;
+                video.Play();
+                video.loopPointReached += OnVideoEnd;
+            }
             //OnVideoEnd(video);
         }
     }
@@ -37,6 +46,7 @@ public class Door : MonoBehaviour
     {
         if (vp == video)
         {
+            fadeObject.GetComponent<Fade>().FadeIn();
             screenObject.SetActive(false);
             video.enabled = false;
             StartCoroutine(DelayedAction());
@@ -52,5 +62,12 @@ public class Door : MonoBehaviour
                 audio.Play();
             }
         }
+    }
+
+    public void PlayDoorAudio(AudioClip ac)
+    {
+        Debug.Log("¿€µø");
+        audio.clip = ac;
+        audio.Play();
     }
 }

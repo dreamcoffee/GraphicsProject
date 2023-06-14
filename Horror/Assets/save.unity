@@ -23,7 +23,7 @@ RenderSettings:
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
-  m_AmbientIntensity: 0.13
+  m_AmbientIntensity: 0.43
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: 6234b6f1d0b340742b652c5ec3f4b1fe, type: 2}
@@ -708,11 +708,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeObject: {fileID: 352035597}
   screenObject: {fileID: 1679818733}
+  phoneObject: {fileID: 1092884084996870}
   video: {fileID: 1552077311}
   AudioClip: {fileID: 8300000, guid: 9c9ee07124280ee42a15c6a15716f0ad, type: 3}
   videoClip: {fileID: 32900000, guid: 9e8586bd13fd4454387bade6a683f6ac, type: 3}
   audio: {fileID: 1029390674}
-  played: 1
+  played: 0
 --- !u!1001 &154960094
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -999,6 +1000,150 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &311205416
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 311205418}
+  - component: {fileID: 311205419}
+  - component: {fileID: 311205417}
+  m_Layer: 0
+  m_Name: StaticAudio
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &311205417
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311205416}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 2d58815a5e762c245a6549887a8e9053, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 4.37
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &311205418
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311205416}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.877, y: 3.43, z: 8.276}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &311205419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 311205416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 68bf3ff5067a8c345be24cf77deb719a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  horrorSound1: {fileID: 8300000, guid: 2d58815a5e762c245a6549887a8e9053, type: 3}
+  whisperSound: {fileID: 8300000, guid: 301f6701dc4e9aa479cb647fd26e69a6, type: 3}
+  audio: {fileID: 311205417}
 --- !u!1 &352035597
 GameObject:
   m_ObjectHideFlags: 0
@@ -1277,7 +1422,7 @@ GameObject:
   - component: {fileID: 567482207}
   - component: {fileID: 567482203}
   m_Layer: 0
-  m_Name: RightSwich
+  m_Name: LampSwich
   m_TagString: Button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1375,6 +1520,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   targetLight: {fileID: 1178835756}
   targetObject: {fileID: 1730319537061916847}
+  staticSound: {fileID: 311205417}
   onColor: {r: 1, g: 1, b: 1, a: 1}
   offColor: {r: 0, g: 0, b: 0, a: 1}
 --- !u!1 &573446752
@@ -2529,7 +2675,6 @@ GameObject:
   - component: {fileID: 1440501506}
   - component: {fileID: 1440501509}
   - component: {fileID: 1440501508}
-  - component: {fileID: 1440501507}
   m_Layer: 0
   m_Name: PhoneScreen
   m_TagString: Untagged
@@ -2553,19 +2698,6 @@ Transform:
   m_Father: {fileID: 4461402021297024}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &1440501507
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1440501505}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &1440501508
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -3831,7 +3963,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.07860551, y: 0.14167729, z: 0.009137751}
+  m_Size: {x: 0.07860551, y: 0.14167729, z: 0.02}
   m_Center: {x: 0, y: 0.000000040978193, z: 0.0013964842}
 --- !u!114 &65869192075468129
 MonoBehaviour:
@@ -3851,11 +3983,12 @@ MonoBehaviour:
   screenObject: {fileID: 1679818733}
   tvScreenObject: {fileID: 605985010}
   fadeObject: {fileID: 352035597}
+  lightSwitchObject: {fileID: 567482202}
+  staticSound: {fileID: 311205417}
   audioSource: {fileID: 1821781643}
   policeCall: {fileID: 8300000, guid: 614bc64329f59454daae65f187f74ed2, type: 3}
   policeSound: {fileID: 8300000, guid: 8974ea4b938839a408f413ca806c3a4a, type: 3}
   konck2: {fileID: 8300000, guid: 9d025ad53fdf4374e864d55caf1fddec, type: 3}
-  horrorSound1: {fileID: 8300000, guid: 2d58815a5e762c245a6549887a8e9053, type: 3}
   video: {fileID: 1552077311}
 --- !u!4 &543450651737158944
 Transform:

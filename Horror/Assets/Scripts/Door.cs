@@ -9,6 +9,7 @@ public class Door : MonoBehaviour
 {
     public GameObject fadeObject;
     public GameObject screenObject;
+    public GameObject phoneObject;
     public VideoPlayer video;
     public AudioClip AudioClip;
     public VideoClip videoClip;
@@ -49,6 +50,7 @@ public class Door : MonoBehaviour
             fadeObject.GetComponent<Fade>().FadeIn();
             screenObject.SetActive(false);
             video.enabled = false;
+            phoneObject.GetComponent<Phone>().clickPhone2 = true;
             StartCoroutine(DelayedAction());
 
             IEnumerator DelayedAction()

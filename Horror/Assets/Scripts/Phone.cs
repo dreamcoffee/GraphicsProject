@@ -13,11 +13,12 @@ public class Phone : MonoBehaviour
     public GameObject screenObject;
     public GameObject tvScreenObject;
     public GameObject fadeObject;
+    public GameObject lightSwitchObject;
+    public AudioSource staticSound;
     public AudioSource audioSource;
     public AudioClip policeCall;
     public AudioClip policeSound;
     public AudioClip konck2;
-    public AudioClip horrorSound1;
     public VideoPlayer video;
     private Color onColor = Color.white;
     private Color offColor = Color.black;
@@ -52,6 +53,7 @@ public class Phone : MonoBehaviour
         }
         else if (clickPhone2)
         {
+            clickPhone2 = false;
             Event2();
         }
     }
@@ -64,7 +66,6 @@ public class Phone : MonoBehaviour
 
     public void Event2()
     {
-        clickPhone2 = false;
         Debug.Log("테스트테스트");
         audioSource.clip = policeCall;
         audioSource.loop = false;
@@ -102,9 +103,8 @@ public class Phone : MonoBehaviour
         fadeObject.GetComponent<Fade>().FadeIn();
         yield return new WaitForSeconds(3f);
         tvScreenObject.GetComponent<Tv>().TvOff();
-        audioSource.clip = horrorSound1;
-        audioSource.spatialBlend = 0f;
-        audioSource.Play();
+        staticSound.GetComponent<StaticSound>().Event1();
+        lightSwitchObject.GetComponent<LightToggleButton>().event1 = true;
         yield return new WaitForSeconds(2f);
         doorObject.GetComponent<Door>().PlayDoorAudio(konck2);
     }

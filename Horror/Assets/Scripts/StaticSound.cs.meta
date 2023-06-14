@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 68bf3ff5067a8c345be24cf77deb719a
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - horrorSound1: {fileID: 8300000, guid: 2d58815a5e762c245a6549887a8e9053, type: 3}
+  - audio: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

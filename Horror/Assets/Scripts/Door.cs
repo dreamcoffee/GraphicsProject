@@ -13,8 +13,12 @@ public class Door : MonoBehaviour
     public VideoPlayer video;
     public AudioClip AudioClip;
     public VideoClip videoClip;
+    public VideoClip videoClip2;
     public AudioSource audio;
+    public bool check1 = false;
     public bool played = false;
+    public bool eventExit = false;
+    public bool isClickEventRunning = false;
 
     void Start()
     {
@@ -23,14 +27,19 @@ public class Door : MonoBehaviour
 
     void Click()
     {
-        Debug.Log(played);
-        if (played)
+        if (isClickEventRunning)
         {
-            played = false;
+            // 클릭 이벤트가 이미 실행 중인 경우, 추가 클릭을 무시합니다.
+            return;
+        }
+
+        if (played == true)
+        {
             fadeObject.GetComponent<Fade>().FadeOut();
             StartCoroutine(DelayedAction());
             IEnumerator DelayedAction()
             {
+                isClickEventRunning = true;
                 yield return new WaitForSeconds(3f);
                 fadeObject.GetComponent<Fade>().FadeClear();
                 screenObject.SetActive(true);
@@ -38,15 +47,30 @@ public class Door : MonoBehaviour
                 video.clip = videoClip;
                 video.Play();
                 video.loopPointReached += OnVideoEnd;
+                isClickEventRunning = false;
+                played = false;
             }
             //OnVideoEnd(video);
+        }
+        else if (eventExit)
+        {
+            EventExit();
         }
     }
 
     private void OnVideoEnd(VideoPlayer vp)
     {
+        played = false;
         if (vp == video)
         {
+            Debug.Log("OnVideoEnd 함수 실행");
+            if (check1 == true)
+            {
+                Debug.Log(check1);
+                Debug.Log("check1 걸림");
+                return;
+            }
+            Debug.Log("OnVideoEnd if문 통과");
             fadeObject.GetComponent<Fade>().FadeIn();
             screenObject.SetActive(false);
             video.enabled = false;
@@ -62,6 +86,23 @@ public class Door : MonoBehaviour
                 yield return new WaitForSeconds(3f);
                 audio.clip = AudioClip;
                 audio.Play();
+                played = false;
+            }
+        }
+    }
+
+    private void OnVideoEnd2(VideoPlayer vp)
+    {
+        if (vp == video)
+        {
+            fadeObject.GetComponent<Fade>().FadeOut();
+            video.clip = videoClip2;
+            StartCoroutine(DelayedAction2());
+            IEnumerator DelayedAction2()
+            {
+                yield return new WaitForSeconds(3f);
+                fadeObject.GetComponent<Fade>().FadeIn();
+                video.Play();
             }
         }
     }
@@ -71,5 +112,20 @@ public class Door : MonoBehaviour
         Debug.Log("작동");
         audio.clip = ac;
         audio.Play();
+    }
+
+    public void EventExit()
+    {
+        fadeObject.GetComponent<Fade>().FadeOut();
+        StartCoroutine(DelayedAction3());
+        IEnumerator DelayedAction3()
+        {
+            yield return new WaitForSeconds(3f);
+            fadeObject.GetComponent<Fade>().FadeClear();
+            screenObject.SetActive(true);
+            video.enabled = true;
+            video.Play();
+            video.loopPointReached += OnVideoEnd2;
+        }
     }
 }

@@ -1,10 +1,16 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Video;
+using System.Collections;
 
 public class LightToggleButton : MonoBehaviour
 {
     public Light targetLight;
+    public GameObject fadeObject;
     public GameObject targetObject;
+    public GameObject screenObject;
+    public VideoPlayer video;
+    public VideoClip monologueClip;
     public AudioSource staticSound;
     public AudioSource switchSound;
     public Color onColor = Color.white; 
@@ -32,13 +38,30 @@ public class LightToggleButton : MonoBehaviour
             LightOn();
             if(event1 == true)
             {
+                Debug.Log("조명 스위치 event1 실행 확인");
                 staticSound.Stop();
+                StartCoroutine(Event1Play());
             }
         }
         else
         {
             LightOff();
         }
+    }
+
+    private IEnumerator Event1Play()
+    {
+        event1 = false;
+        Debug.Log("테스트");
+        yield return new WaitForSeconds(3f);
+        fadeObject.GetComponent<Fade>().FadeOut();
+        yield return new WaitForSeconds(2f);
+        screenObject.SetActive(true);
+        video.enabled = true;
+        video.clip = monologueClip;
+        video.Play();
+        fadeObject.GetComponent<Fade>().FadeClear();
+        video.loopPointReached += OnVideoEnd2;
     }
 
     public void LightOn()
@@ -55,5 +78,15 @@ public class LightToggleButton : MonoBehaviour
         targetLight.enabled = false;
         isLightOn = false;
         material.SetColor("_EmissionColor", offColor * 0);
+    }
+
+    private void OnVideoEnd2(VideoPlayer vp)
+    {
+        if (vp == video)
+        {
+            fadeObject.GetComponent<Fade>().FadeIn();
+            screenObject.SetActive(false);
+            video.enabled = false;
+        }
     }
 }

@@ -27,7 +27,7 @@ public class Tv : MonoBehaviour
     {
         if (tvClick)
         {
-            if(tvLightOn) {
+            if (tvLightOn) {
                 TvOff();
             }
             else

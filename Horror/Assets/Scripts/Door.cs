@@ -79,11 +79,27 @@ public class Door : MonoBehaviour
 
             IEnumerator DelayedAction()
             {
+                if (check1 == true)
+                {
+                    yield break; // 코루틴 종료
+                }
                 yield return new WaitForSeconds(12f);
+                if (check1 == true)
+                {
+                    yield break; // 코루틴 종료
+                }
                 audio.Play();
                 yield return new WaitForSeconds(2f);
+                if (check1 == true)
+                {
+                    yield break; // 코루틴 종료
+                }
                 audio.Play();
                 yield return new WaitForSeconds(3f);
+                if (check1 == true)
+                {
+                    yield break; // 코루틴 종료
+                }
                 audio.clip = AudioClip;
                 audio.Play();
                 played = false;
@@ -101,7 +117,6 @@ public class Door : MonoBehaviour
             IEnumerator DelayedAction2()
             {
                 yield return new WaitForSeconds(3f);
-                fadeObject.GetComponent<Fade>().FadeIn();
                 video.Play();
             }
         }
@@ -125,6 +140,7 @@ public class Door : MonoBehaviour
             screenObject.SetActive(true);
             video.enabled = true;
             video.Play();
+            video.loopPointReached -= OnVideoEnd;
             video.loopPointReached += OnVideoEnd2;
         }
     }

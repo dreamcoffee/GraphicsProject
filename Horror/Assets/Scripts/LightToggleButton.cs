@@ -9,6 +9,7 @@ public class LightToggleButton : MonoBehaviour
     public GameObject fadeObject;
     public GameObject targetObject;
     public GameObject screenObject;
+    public GameObject doorObject;
     public VideoPlayer video;
     public VideoClip monologueClip;
     public AudioSource staticSound;
@@ -52,7 +53,7 @@ public class LightToggleButton : MonoBehaviour
     private IEnumerator Event1Play()
     {
         event1 = false;
-        Debug.Log("테스트");
+        Debug.Log("조명 스위치 Event1 실행");
         yield return new WaitForSeconds(3f);
         fadeObject.GetComponent<Fade>().FadeOut();
         yield return new WaitForSeconds(2f);
@@ -82,8 +83,9 @@ public class LightToggleButton : MonoBehaviour
 
     private void OnVideoEnd2(VideoPlayer vp)
     {
-        if (vp == video)
-        {
+        if (vp == video) {
+
+            doorObject.GetComponent<Door>().check1 = true;
             fadeObject.GetComponent<Fade>().FadeIn();
             screenObject.SetActive(false);
             video.enabled = false;

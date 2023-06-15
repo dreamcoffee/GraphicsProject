@@ -21,7 +21,6 @@ public class Fade : MonoBehaviour
     {
         if (fadeInStart)
         {
-            Debug.Log("페이드인 실행");
             fadeTimer += Time.deltaTime;
 
             fadeImage.color = Color.clear;
@@ -36,7 +35,6 @@ public class Fade : MonoBehaviour
         }
         else if(fadeOutStart)
         {
-            Debug.Log("페이드아웃 실행");
             fadeTimer += Time.deltaTime;
 
             fadeImage.color = Color.black;

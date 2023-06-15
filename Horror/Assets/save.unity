@@ -1455,13 +1455,14 @@ MonoBehaviour:
   fadeObject: {fileID: 352035597}
   targetObject: {fileID: 1730319537061916847}
   screenObject: {fileID: 1679818733}
+  doorObject: {fileID: 110048985}
   video: {fileID: 1552077311}
   monologueClip: {fileID: 32900000, guid: fd5000aeb3ae7e349bb3fa3a23c42ce3, type: 3}
   staticSound: {fileID: 311205417}
   switchSound: {fileID: 1615874485}
   onColor: {r: 1, g: 1, b: 1, a: 1}
   offColor: {r: 0, g: 0, b: 0, a: 1}
-  event1: 0
+  event1: 1
 --- !u!1 &573446752
 GameObject:
   m_ObjectHideFlags: 0

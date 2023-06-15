@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class MouseMove : MonoBehaviour
@@ -9,6 +11,8 @@ public class MouseMove : MonoBehaviour
 
     void Update()
     {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         // 마우스 이동값을 받아서 rotationX, rotationY 업데이트
         float mouseMoveX = Input.GetAxis("Mouse X");
         float mouseMoveY = Input.GetAxis("Mouse Y");

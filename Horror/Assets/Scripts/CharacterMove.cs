@@ -22,7 +22,7 @@ public class CharacterMove : MonoBehaviour
 
     void Start()
     {
-
+       
     }
 
     void Update()

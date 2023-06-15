@@ -27,7 +27,7 @@ public class StaticSound : MonoBehaviour
         {
             yield return null;
         }
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         audio.clip = whisperSound;
         audio.volume = 0.5f;
         audio.Play();
